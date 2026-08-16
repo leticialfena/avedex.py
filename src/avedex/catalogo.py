@@ -1,160 +1,74 @@
+import random
+
 from src.avedex.utils import (
-    titulo,
-    mensagem_aviso,
+    paginar_aves,
     normalizar_texto,
-    valor_ou_indisponivel,
+    mensagem_aviso,
+    pausar,
+    titulo,
 )
 
-CAMPOS_BUSCA = [
-    "nome_popular",
-    "nome_cientifico",
-    "familia",
-    "ordem",
-    "dieta_tipo"
-]
 
 def listar_aves(catalogo):
-    titulo("AVES CADASTRADAS")
+    return paginar_aves(
+        catalogo,
+        "AVES CADASTRADAS"
+    )
 
-    print(f"Total de aves cadastradas: {len(catalogo)}")
-    print()
 
-    for ave in catalogo:
-        print(f"{ave['id']} - {ave['nome_popular']}")
+def mostrar_ave_aleatoria(catalogo):
+    if not catalogo:
+        mensagem_aviso(
+            "Nenhuma ave disponível para sorteio."
+        )
+        return
+
+    ave = random.choice(catalogo)
+
+    titulo("AVE ALEATÓRIA")
+
+    print(
+        f"Ave sorteada: "
+        f"{ave.get('nome_popular', 'Ave')}"
+    )
+
+    exibir_detalhes_ave(ave)
+
+
+def ler_id_ave(mensagem):
+    while True:
+        entrada = input(mensagem).strip()
+
+        if entrada.isdigit():
+            return int(entrada)
+
+        mensagem_aviso("Digite apenas números.")
 
 
 def buscar_ave_por_id(catalogo, id_procurado):
-    # Procura uma ave pelo ID.
     for ave in catalogo:
-        if str(ave["id"]) == id_procurado:
+        if ave["id"] == id_procurado:
             return ave
 
     return None
 
-def escolher_ave(catalogo, mensagem):
-    # Lista as aves e pede um ID.
-    listar_aves(catalogo)
 
-    id_escolhido = input(
-        f"\n{mensagem}: "
-    ).strip()
-
-    ave_encontrada = buscar_ave_por_id(
-        catalogo,
-        id_escolhido
-    )
-
-    if ave_encontrada is None:
-        mensagem_aviso(
-            "Ave não encontrada. Confira o ID informado."
-        )
-        return None
-
-    return ave_encontrada
-
-
-def mostrar_detalhes(ave):
-    # Exibe informações completas de uma ave.
-    titulo(ave.get("nome_popular", "Ave"))
-
-    print(f"ID: {ave.get('id')}")
-    print(f"Nome popular: {ave.get('nome_popular')}")
-    print(f"Nome científico: {ave.get('nome_cientifico')}")
-    print(f"Ordem: {ave.get('ordem')}")
-    print(f"Família: {ave.get('familia')}")
-    print(f"Dieta: {ave.get('dieta_tipo')}")
-    print(
-        f"Comprimento: "
-        f"{valor_ou_indisponivel(ave.get('comprimento_cm'), 'cm')}"
-    )
-    print(
-        f"Peso médio: "
-        f"{valor_ou_indisponivel(ave.get('peso_g'), 'g')}"
-    )
-    print(
-        f"Status de conservação: "
-        f"{ave.get('status_conservacao', 'Não informado')}"
-    )
-    print(
-        f"Índice de conservação: "
-        f"{ave.get('indice_conservacao', 'Não informado')}"
-    )
-
-    print()
-    print("Descrição")
-    print(ave.get("descricao", "Não informado"))
-
-    print()
-    print("Habitat")
-    print(ave.get("habitat", "Não informado"))
-
-    print()
-    print("Alimentação")
-    print(ave.get("alimentacao", "Não informado"))
-
-    curiosidade = ave.get("curiosidade")
-
-    if curiosidade:
-        print()
-        print("Curiosidade")
-        print(curiosidade)
-
-    midia = ave.get("midia", {})
-
-    print()
-    print("Mídia")
-    print(
-        f"Página no guia: "
-        f"{midia.get('pagina_guia', 'Não informado')}"
-    )
-    print(
-        f"Fotógrafo: "
-        f"{midia.get('fotografo', 'Não informado')}"
-    )
-    print(
-        f"WikiAves: "
-        f"{midia.get('wikiaves_url', 'Não informado')}"
-    )
-    print(
-        f"Som: "
-        f"{midia.get('som_url', 'Não informado')}"
-    )
-    print(
-        f"Imagem: "
-        f"{midia.get('imagem_url', 'Não informado')}"
-    )
-
-def tela_detalhes(aves):
-    # Permite ao usuário escolher uma ave e ver seus detalhes.
-    ave = escolher_ave(
-        aves,
-        "Digite o ID da ave para ver detalhes"
-    )
-
-    if ave is not None:
-        mostrar_detalhes(ave)
-
-
-def criar_texto_busca(ave):
-    # Monta um texto com os campos usados na busca.
-    valores = []
-
-    for campo in CAMPOS_BUSCA:
-        valores.append(str(ave.get(campo, "")))
-
-    texto = " ".join(valores)
-
-    return normalizar_texto(texto)
-
-
-def buscar_lista_aves(aves, termo_busca):
-    # Retorna uma lista com as aves encontradas.
+def buscar_aves(catalogo, termo_busca):
     resultados = []
 
     termo = normalizar_texto(termo_busca)
 
-    for ave in aves:
-        texto_busca = criar_texto_busca(ave)
+    for ave in catalogo:
+        campos_busca = [
+            ave.get("nome_popular", ""),
+            ave.get("nome_cientifico", ""),
+            ave.get("familia", ""),
+            ave.get("ordem", ""),
+            ave.get("dieta_tipo", ""),
+        ]
+
+        texto_busca = " ".join(campos_busca)
+        texto_busca = normalizar_texto(texto_busca)
 
         if termo in texto_busca:
             resultados.append(ave)
@@ -162,12 +76,58 @@ def buscar_lista_aves(aves, termo_busca):
     return resultados
 
 
-def buscar_aves(aves):
-    # Tela completa de busca textual.
-    titulo("BUSCAR AVE")
+def exibir_resultados_busca(resultados):
+    titulo("RESULTADOS DA BUSCA")
 
+    print(
+        f"Foram encontradas "
+        f"{len(resultados)} ave(s).\n"
+    )
+
+    if len(resultados) == 0:
+        print("Nenhuma ave encontrada.")
+    else:
+        for ave in resultados:
+            print(
+                f"{ave['id']} - "
+                f"{ave['nome_popular']} "
+                f"({ave['familia']}, "
+                f"{ave['dieta_tipo']})"
+            )
+
+
+def selecionar_resultado_busca(resultados):
+    escolha = input(
+        "\nDigite o ID para ver detalhes "
+        "ou ENTER para voltar: "
+    ).strip()
+
+    if escolha == "":
+        return
+
+    if not escolha.isdigit():
+        mensagem_aviso(
+            "Digite apenas números."
+        )
+        return
+
+    ave_encontrada = buscar_ave_por_id(
+        resultados,
+        int(escolha)
+    )
+
+    if ave_encontrada is None:
+        mensagem_aviso(
+            "ID não encontrado nos resultados."
+        )
+    else:
+        exibir_detalhes_ave(ave_encontrada)
+
+
+def tela_busca(catalogo):
     termo = input(
-        "Digite parte do nome, família, ordem ou dieta: "
+        "Digite parte do nome, família, "
+        "ordem ou dieta: "
     ).strip()
 
     if termo == "":
@@ -176,39 +136,76 @@ def buscar_aves(aves):
         )
         return
 
-    resultados = buscar_lista_aves(
-        aves,
+    resultados = buscar_aves(
+        catalogo,
         termo
     )
 
-    if len(resultados) == 0:
-        mensagem_aviso(
-            "Nenhuma ave encontrada."
+    exibir_resultados_busca(resultados)
+
+    if len(resultados) > 0:
+        selecionar_resultado_busca(resultados)
+
+
+def exibir_detalhes_ave(ave):
+    titulo("DETALHES DA AVE")
+
+    print(f"ID: {ave['id']}")
+    print(
+        f"Nome popular: "
+        f"{ave['nome_popular']}"
+    )
+    print(
+        f"Nome científico: "
+        f"{ave['nome_cientifico']}"
+    )
+    print(f"Ordem: {ave.get('ordem', 'Não informado')}")
+    print(f"Família: {ave.get('familia', 'Não informado')}")
+    print(f"Habitat: {ave['habitat']}")
+    print(
+        f"Dieta: "
+        f"{ave.get('dieta_tipo', 'Não informado')}"
+    )
+    print(
+        f"Alimentação: "
+        f"{ave['alimentacao']}"
+    )
+    print(
+        f"Comprimento: "
+        f"{ave.get('comprimento_cm', 'Não informado')} cm"
+    )
+    print(
+        f"Peso: "
+        f"{ave.get('peso_g', 'Não informado')} g"
+    )
+    print(
+        f"Conservação: "
+        f"{ave.get('status_conservacao', 'Não informado')}"
+    )
+    print(
+        f"Curiosidade: "
+        f"{ave.get('curiosidade', 'Não informada')}"
+    )
+
+    pausar()
+
+
+def selecionar_ave_por_id(catalogo):
+    ave_encontrada = listar_aves(catalogo)
+
+    if ave_encontrada is not None:
+        exibir_detalhes_ave(
+            ave_encontrada
         )
-        return
 
-    titulo("RESULTADO DA BUSCA")
 
-    for ave in resultados:
-        print(
-            f"{ave['id']} - {ave['nome_popular']} "
-            f"({ave['familia']}, {ave['dieta_tipo']})"
-        )
+def escolher_ave(catalogo, mensagem):
+    print()
+    print(mensagem)
 
-    escolha = input(
-        "\nDigite o ID para ver detalhes "
-        "ou ENTER para voltar: "
-    ).strip()
+    ave = paginar_aves(
+        catalogo,
+        "SELECIONE UMA AVE"
+    )
 
-    if escolha != "":
-        ave = buscar_ave_por_id(
-            resultados,
-            escolha
-        )
-
-        if ave is None:
-            mensagem_aviso(
-                "ID não encontrado nos resultados."
-            )
-        else:
-            mostrar_detalhes(ave)
+    return ave
