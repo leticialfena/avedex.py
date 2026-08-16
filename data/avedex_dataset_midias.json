@@ -1,0 +1,276 @@
+{
+    "nome_dataset": "AveDex",
+    "versao": "1.0",
+    "descricao": "Dataset didático de aves para a disciplina de Boas Práticas de Programação.",
+    "total_aves": 8,
+
+    "escala_indice_conservacao": {
+        "LC": 1,
+        "NT": 2,
+        "VU": 3,
+        "EN": 4,
+        "CR": 5,
+        "EW": 6,
+        "EX": 7,
+        "DD": 0,
+        "NE": 0
+    },
+
+    "fontes_globais": {
+        "Guia de Aves Funed": "https://www.funed.mg.gov.br/",
+        "WikiAves": "https://www.wikiaves.com.br/",
+        "IUCN Red List": "https://www.iucnredlist.org/"
+    },
+
+    "aves": [
+        {
+            "id": 1,
+            "slug": "bem_te_vi",
+            "nome_popular": "Bem-te-vi",
+            "nome_cientifico": "Pitangus sulphuratus",
+            "ordem": "Passeriformes",
+            "familia": "Tyrannidae",
+            "dieta_tipo": "Onívoro",
+            "comprimento_cm": 23.0,
+            "peso_g": 68.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Ave muito conhecida em áreas urbanas e rurais.",
+            "habitat": "Áreas abertas, cidades e bordas de florestas.",
+            "alimentacao": "Insetos, frutos e pequenos animais.",
+            "curiosidade": "Seu canto parece dizer o próprio nome.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 2,
+            "slug": "joao_de_barro",
+            "nome_popular": "João-de-barro",
+            "nome_cientifico": "Furnarius rufus",
+            "ordem": "Passeriformes",
+            "familia": "Furnariidae",
+            "dieta_tipo": "Insetívoro",
+            "comprimento_cm": 20.0,
+            "peso_g": 49.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Ave conhecida por construir ninhos de barro.",
+            "habitat": "Campos, cidades e áreas rurais.",
+            "alimentacao": "Insetos e outros invertebrados.",
+            "curiosidade": "O ninho de barro é uma de suas características mais marcantes.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 3,
+            "slug": "canario_da_terra",
+            "nome_popular": "Canário-da-terra",
+            "nome_cientifico": "Sicalis flaveola",
+            "ordem": "Passeriformes",
+            "familia": "Thraupidae",
+            "dieta_tipo": "Granívoro",
+            "comprimento_cm": 13.0,
+            "peso_g": 20.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Ave de canto forte e melodioso.",
+            "habitat": "Campos e áreas abertas.",
+            "alimentacao": "Sementes e pequenos insetos.",
+            "curiosidade": "É bastante reconhecido pelo canto.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 4,
+            "slug": "arara_azul",
+            "nome_popular": "Arara-azul",
+            "nome_cientifico": "Anodorhynchus hyacinthinus",
+            "ordem": "Psittaciformes",
+            "familia": "Psittacidae",
+            "dieta_tipo": "Frugívoro",
+            "comprimento_cm": 100.0,
+            "peso_g": 1500.0,
+            "status_conservacao": "VU",
+            "indice_conservacao": 3,
+            "descricao": "Uma das maiores araras do mundo, conhecida por sua plumagem azul.",
+            "habitat": "Pantanal, cerrado e áreas de mata.",
+            "alimentacao": "Frutos, sementes e castanhas.",
+            "curiosidade": "É considerada uma das maiores araras do mundo.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 5,
+            "slug": "tucano_toco",
+            "nome_popular": "Tucano-toco",
+            "nome_cientifico": "Ramphastos toco",
+            "ordem": "Piciformes",
+            "familia": "Ramphastidae",
+            "dieta_tipo": "Onívoro",
+            "comprimento_cm": 56.0,
+            "peso_g": 540.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Ave conhecida pelo grande bico colorido e pela plumagem marcante.",
+            "habitat": "Cerrado, campos e bordas de florestas.",
+            "alimentacao": "Frutos, insetos, ovos e pequenos animais.",
+            "curiosidade": "Possui um grande bico colorido.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 6,
+            "slug": "sabia_laranjeira",
+            "nome_popular": "Sabiá-laranjeira",
+            "nome_cientifico": "Turdus rufiventris",
+            "ordem": "Passeriformes",
+            "familia": "Turdidae",
+            "dieta_tipo": "Onívoro",
+            "comprimento_cm": 25.0,
+            "peso_g": 75.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Ave conhecida pelo canto melodioso e pela presença frequente em áreas urbanas.",
+            "habitat": "Florestas, jardins, parques e cidades.",
+            "alimentacao": "Frutos, insetos e pequenos invertebrados.",
+            "curiosidade": "É conhecido pelo canto melodioso.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 7,
+            "slug": "coruja_buraqueira",
+            "nome_popular": "Coruja-buraqueira",
+            "nome_cientifico": "Athene cunicularia",
+            "ordem": "Strigiformes",
+            "familia": "Strigidae",
+            "dieta_tipo": "Carnívoro",
+            "comprimento_cm": 23.0,
+            "peso_g": 170.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Coruja encontrada principalmente em áreas abertas e conhecida por utilizar tocas no solo.",
+            "habitat": "Campos, áreas abertas e cidades.",
+            "alimentacao": "Insetos, pequenos roedores e outros animais.",
+            "curiosidade": "Costuma utilizar tocas no solo como abrigo.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 8,
+            "slug": "aguia_cinzenta",
+            "nome_popular": "Águia-cinzenta",
+            "nome_cientifico": "Urubitinga coronata",
+            "ordem": "Accipitriformes",
+            "familia": "Accipitridae",
+            "dieta_tipo": "Carnívoro",
+            "comprimento_cm": 75.0,
+            "peso_g": 3000.0,
+            "status_conservacao": "EN",
+            "indice_conservacao": 4,
+            "descricao": "Grande ave de rapina encontrada principalmente em campos, cerrado e áreas abertas.",
+            "habitat": "Campos, cerrado e áreas abertas.",
+            "alimentacao": "Mamíferos, aves, répteis e outros animais.",
+            "curiosidade": "É uma das maiores aves de rapina do Brasil.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        },
+
+        {
+            "id": 9,
+            "slug": "arara_azul_grande",
+            "nome_popular": "Arara-azul-grande",
+            "nome_cientifico": "Anodorhynchus hyacinthinus",
+            "ordem": "Psittaciformes",
+            "familia": "Psittacidae",
+            "dieta_tipo": "Frugívoro",
+            "comprimento_cm": 100.0,
+            "peso_g": 1500.0,
+            "status_conservacao": "VU",
+            "indice_conservacao": 3,
+            "descricao": "Uma das maiores araras do mundo, conhecida por sua plumagem azul.",
+            "habitat": "Pantanal, cerrado e áreas de mata.",
+            "alimentacao": "Frutos, sementes e castanhas.",
+            "curiosidade": "É considerada uma das maiores araras do mundo.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            } 
+        },
+
+        {
+            "id": 10,
+            "slug": "tucano_toco_grande",
+            "nome_popular": "Tucano-toco-grande",
+            "nome_cientifico": "Ramphastos toco",
+            "ordem": "Piciformes",
+            "familia": "Ramphastidae",
+            "dieta_tipo": "Onívoro",
+            "comprimento_cm": 56.0,
+            "peso_g": 540.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Grande tucano encontrado em florestas e áreas abertas.",
+            "habitat": "Florestas e áreas abertas.",
+            "alimentacao": "Frutos, sementes e insetos.",
+            "curiosidade": "É conhecido por seu bico grande e colorido.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
+        }
+    ]
+}
